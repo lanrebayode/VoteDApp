@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import Style from "./NavBar.module.css";
-import logo from "../../public/logo.PNG";
+import logo from "../../public/logo.png";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { BiMenu } from "react-icons/bi";
 import { AiOutlineClose } from "react-icons/ai";
