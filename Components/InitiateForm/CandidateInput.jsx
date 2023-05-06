@@ -28,11 +28,6 @@ const CandidateInput = () => {
     await uploadToIPFS(candidateImg).then((url) =>
       addCandidate(campaignID, candidateName, url, candidateIndex)
     );
-    // uploadToIPFS((url) =>
-    //   addCandidate(campaignID, candidateName, url, candidateIndex)
-    // );
-    // await handleImageUpload();
-    // addCandidate(campaignID, candidateName, candidateImg, candidateIndex);
   };
 
   useEffect(() => {
@@ -67,13 +62,13 @@ const CandidateInput = () => {
             </label>
           </div>
           <div className={Style.candidate}>
-            <div className={Style.InitiateForm_box_form_name}>
+            <div className={Style.candidateName}>
               {" "}
-              <label className={Style.InitiateForm_box_form_label}>
+              <label className={Style.candidateName_label}>
                 Candidates Name
               </label>
               <input
-                className={Style.InitiateForm_box_form_input}
+                className={Style.candidateName_input}
                 type="text"
                 placeholder="Enter Candidate name"
                 onChange={(e) => setCandidateName(e.target.value)}

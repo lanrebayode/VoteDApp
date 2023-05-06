@@ -88,7 +88,9 @@ const View = () => {
           <div className={Style.View_box_campaignDetails}>
             <h3>{loadCampaign[1]}</h3>
             <p>Campaign ID:{campaignID} </p>
-            <p>Campaign Chairperson:{loadCampaign[0]} </p>
+            <p>
+              Campaign Chairperson:<span>{loadCampaign[0]}</span>{" "}
+            </p>
             <p>Start: {startTime}</p>
             <p>End: {endTIme} </p>
             <p>Total Vote Cast: {totalVoters} </p>

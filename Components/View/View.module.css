@@ -36,6 +36,10 @@
     font-size: 11px;
 }
 
+.View_box_campaignDetails span{
+    font-size: 8px;
+}
+
 .View_box_campaignDetails_img{
     border-radius: .8rem;
 }

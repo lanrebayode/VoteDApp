@@ -114,6 +114,22 @@
     text-align: left;
 }
 
+.candidateName_label{
+    background-color:rgb(119, 77, 210);
+    padding: .3rem;
+    color: white;
+    font-weight: 600;
+    font-size: .8rem;
+}
+
+.candidateName_input{
+    border: solid 2px rgb(82, 29, 188);
+    margin-bottom: 1rem;
+    height: 20px;
+    width: 15rem;
+}
+
+
 .candidate_id{
     margin-bottom: 2rem;
     display: flex;
@@ -137,6 +153,7 @@
     border: none;
     margin-left: 1rem;
     cursor: pointer;
+    width: 9.5rem;
 }
 
 .approve{

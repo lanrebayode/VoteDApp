@@ -91,6 +91,10 @@ const NavBar = () => {
                 {" "}
                 <p>Initiate</p>
               </Link>
+              <Link href={{ pathname: "candidateInput" }}>
+                {" "}
+                <p>Add</p>
+              </Link>
               <Link href={{ pathname: "vote" }}>
                 {" "}
                 <p>Vote</p>
