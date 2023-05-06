@@ -32,6 +32,10 @@
     margin-top: 3rem;
 }
 
+.View_box_campaignDetails p{
+    font-size: 11px;
+}
+
 .View_box_campaignDetails_img{
     border-radius: .8rem;
 }

@@ -97,8 +97,8 @@ const View = () => {
             </p>
             <Image
               className={Style.View_box_campaignDetails_img}
-              src={winnerImg}
-              alt="Winner Image"
+              src={loadCampaign[8]}
+              alt="Winner Image not available."
               width={200}
               height={200}
             />

@@ -100,8 +100,8 @@ const Vote = () => {
               >
                 <h4>{candidatesArray[i].name}</h4>
                 <Image
-                  className={candidatesArray[i].i}
-                  src={candidate}
+                  className={Style.Vote_voteDisplay_img}
+                  src={candidatesArray[i].imageUrl}
                   alt="candidate Image"
                   width={200}
                   height={200}
