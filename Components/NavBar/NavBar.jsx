@@ -39,6 +39,7 @@ const NavBar = () => {
               Connect Wallet
             </button> */}
             <ConnectButton
+              className={Style.NavBar_box_connection_btn}
               showBalance={{
                 smallScreen: false,
                 largeScreen: true,
@@ -97,6 +98,16 @@ const NavBar = () => {
               <Link href={{ pathname: "view" }}>
                 <p>View</p>
               </Link>
+              <ConnectButton
+                showBalance={{
+                  smallScreen: false,
+                  largeScreen: true,
+                }}
+                accountStatus={{
+                  smallScreen: "avatar",
+                  largeScreen: "full",
+                }}
+              />
             </div>
           </div>
         ) : (

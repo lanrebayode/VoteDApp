@@ -20,13 +20,7 @@
 }
 
 .NavBar_box_connection_btn{
-    padding: .8rem;
-    background-color: rgb(84, 137, 84);
-    border-radius: .6rem;
-    border: none;
-    color: white;
-    font-weight: 900;
-    cursor: pointer;
+   display: none;
     
 }
 
@@ -62,8 +56,21 @@
         display: none;
     }
 
+    .NavBar_box_logo{
+        align-items: center;
+    }
+    .NavBar_box_logo_img{
+        width: 30%;
+        height: 30%;
+    }
+
+    .NavBar_box_logo h1{
+        font-size: 1rem;
+    }
+
     .NavBar_box_menuIcon{
         display: block;
+        font-size: 2rem;
     }
 
     .NavBar_box_sideBar_header{
