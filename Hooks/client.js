@@ -12,7 +12,6 @@ import {
   VotingSystemAddress,
   VotingSystemABI,
   VotingSystemByteCode,
-  PRIVATEKEY,
 } from "./constants";
 
 //SETTING IPFS VARIALES
@@ -33,11 +32,16 @@ const client = ipfsHttpClient({
 });
 
 //let wallet = new Wallet(PRIVATEKEY, alchemy);
+const PRIVATEKEY = process.env.PRIVATEKEY;
 const ALCHEMY_ID = "6fkLLSLHmiQzd943SK9A4kNEUcr1dvTf";
 const networkUrl =
   "https://eth-sepolia.g.alchemy.com/v2/6fkLLSLHmiQzd943SK9A4kNEUcr1dvTf";
-const provider = new ethers.providers.JsonRpcProvider(networkUrl);
-const signer = new ethers.Wallet(PRIVATEKEY, provider);
+//const provider = new ethers.providers.JsonRpcProvider(networkUrl);
+const provider = new ethers.providers.Web3Provider(window.ethereum);
+//const signer = new ethers.Wallet(PRIVATEKEY, provider);
+//await window.ethereum.enable();
+const signer = provider.getSigner();
+//const address = signer.getAddress();
 const contracto = new ethers.Contract(
   VotingSystemAddress,
   VotingSystemABI,
