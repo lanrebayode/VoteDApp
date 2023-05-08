@@ -37,18 +37,11 @@ const ALCHEMY_ID = "6fkLLSLHmiQzd943SK9A4kNEUcr1dvTf";
 const networkUrl =
   "https://eth-sepolia.g.alchemy.com/v2/6fkLLSLHmiQzd943SK9A4kNEUcr1dvTf";
 //const provider = new ethers.providers.JsonRpcProvider(networkUrl);
-const provider = new ethers.providers.Web3Provider(window.ethereum);
+
+let provider;
+
 //const signer = new ethers.Wallet(PRIVATEKEY, provider);
 //await window.ethereum.enable();
-const signer = provider.getSigner();
-//const address = signer.getAddress();
-const contracto = new ethers.Contract(
-  VotingSystemAddress,
-  VotingSystemABI,
-  signer
-);
-
-console.log(contracto);
 
 //Using Context to make SC functions available to every part of the App
 export const VotingSystemContext = React.createContext();
@@ -58,6 +51,30 @@ export const VotingSystemProvider = ({ children }) => {
   const [candidates, setCandidates] = useState([]);
   const [candidatesLength, setCandidatesLength] = useState();
   const [newCampaignID, setNewCampaignId] = useState();
+  const [contracto, setContracto] = useState();
+
+  const connectWallet = async () => {
+    provider = new ethers.providers.Web3Provider(window.ethereum);
+    const address = await provider.send("eth_requestAccounts", []);
+    const signer = provider.getSigner();
+    const contract = new ethers.Contract(
+      VotingSystemAddress,
+      VotingSystemABI,
+      signer
+    );
+    setContracto(contract);
+
+    console.log("contract instance:", contract);
+    console.log("Connected Address", address);
+  };
+
+  console.log(contracto);
+
+  useEffect(() => {
+    connectWallet();
+
+    //console.log(provider);
+  }, []);
 
   //GETTING TOTAL CAMPAIGNID
   const getTotalCampaignID = async () => {
