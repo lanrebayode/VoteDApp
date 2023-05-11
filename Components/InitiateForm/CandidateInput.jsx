@@ -1,7 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
+import Image from "next/image";
 import Style from "./InitiateForm.module.css";
 
 import { VotingSystemContext } from "@/Hooks/client";
+import loadingGif from "../../public/loadinggif.gif";
 
 const CandidateInput = () => {
   const {
@@ -16,25 +18,30 @@ const CandidateInput = () => {
   const [candidateName, setCandidateName] = useState("");
   const [candidateImg, setCandidateImg] = useState("");
   const [candidateIndex, setCandidateIndex] = useState();
+  const [loading, setLoading] = useState();
+  const [addCount, setAddCount] = useState();
 
   const handleImageUpload = async (file) => {
     //const imgFile = file.target.files[0];
     setCandidateImg(file.target.files[0]);
     console.log(candidateImg);
-    // await uploadToIPFS(imgFile);
+    //await uploadToIPFS(candidateImg);
   };
 
   const handleSubmit = async () => {
+    setLoading(true);
     await uploadToIPFS(candidateImg).then((url) =>
       addCandidate(campaignID, candidateName, url, candidateIndex)
     );
+    setAddCount(addCount + 1);
   };
 
   useEffect(() => {
     //checkCandidates(campaignID, candidateIndex);
+    setLoading(false);
 
     console.log(campaignID, candidateIndex);
-  }, []);
+  }, [addCount]);
   return (
     <div className={Style.InitiateForm}>
       <div className={Style.InitiateForm_box}>
@@ -92,7 +99,11 @@ const CandidateInput = () => {
           type="submit"
           onClick={handleSubmit}
         >
-          Add Candidate
+          {loading ? (
+            <Image src={loadingGif} alt="loading gif" width={20} height={20} />
+          ) : (
+            "Add Candidate"
+          )}
         </button>
       </div>
     </div>

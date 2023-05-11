@@ -31,10 +31,9 @@
     background-color: rgb(119, 77, 210);
     border-top-left-radius: .4rem;
     border-bottom-left-radius: .4rem;
-    padding: .6rem;
+    padding: .9em;
     margin-bottom: 1rem;
-    color: white;
-    
+    color: white;   
     font-weight: 700;
     
 }
@@ -49,7 +48,7 @@
     border: solid 2px rgb(144, 105, 222);
     border-top-right-radius: .4rem;
     border-bottom-right-radius: .4rem;
-    padding: .6rem;
+    padding: .8rem;
     width: 50%;
     align-items: center;
 }
@@ -62,16 +61,29 @@
   top: 4px;
 }
 
+.InitiateForm_box_form_duration{
+    display: flex;
+    gap: 1rem;
+}
+
 .InitiateForm_box_form_duration input{
-    width: 3rem;
+    width: 6rem;
     height: 2rem;
     border-radius: .5rem;
     background: transparent;
     border: solid 2px rgb(144, 105, 222);
     
 }
+
+.InitiateForm_box_form_start{
+    width: 100%;
+    display: flex;
+    gap: .7rem;
+    
+}
+
 .InitiateForm_box_form_start input{
-    width: 3rem;
+    width: 6rem;
     height: 2rem;
     background: transparent;
     border-radius: .5rem;
@@ -163,6 +175,12 @@
     text-align: left;
 }
 
+.approve h5{
+    font-size: .7rem;
+    font-weight: 700;
+    color: rgb(82, 29, 188);
+}
+
 .approveLabel{
     margin-bottom: .5rem;
     padding-bottom: 0rem ;
@@ -171,16 +189,33 @@
 .approveLabel label{
     margin-bottom: 2rem;
     background-color: rgb(119, 77, 210);
-    padding: .5rem;
+    padding: .8rem;
     border-radius: .3rem;
     color: white;
-    font-weight: 500;
+    font-weight: 600;
     font-size: .8rem;
 }
 
 .approveLabel input{
     border-radius: .3rem;
     border: none;
+    height: 2rem;
+}
+
+.appoveLabel2 {
+    padding: .9rem;
+    background-color: rgb(119, 77, 210);
+    border-top-left-radius: .3rem;
+    border-bottom-left-radius: .3rem;
+    color: white;
+    font-weight: 600;
+}
+
+.approveInput{
+    padding: .8rem;
+    border: solid 2px rgb(144, 105, 222);
+    border-top-right-radius: .3rem;
+    border-bottom-right-radius: .3rem;
 }
 
 .appovalMessage{
@@ -188,17 +223,30 @@
     font-family: sans-serif;
 }
 
+.copy{
+    display: flex;
+    width: 10rem;
+    background-color: rgb(152, 151, 150);
+    border-radius: .3rem;
+    padding: .3rem;
+    font-weight: 600;
+}
+
+.copy input{
+    background-color: transparent;
+    border: none;
+}
 
 @media screen and (min-width: 320px) and (max-width: 450px) {
     .InitiateForm_box{
-    width: 80%;
+    width: 90%;
     border-radius: 1rem;
     margin: auto;
     padding-block: 1rem;
     text-align: center;
     display: block;
     box-shadow: 2px 1px 3px 3px rgb(141, 135, 135);
-    padding: 2rem 2rem;
+    padding: 2rem 1rem;
     
 }
 
@@ -213,7 +261,7 @@
 .InitiateForm_box_form_label{
     border-top-left-radius: .3rem;
     border-bottom-left-radius: .3rem;
-    padding: .4rem;
+    padding: .7rem;
     margin-bottom: 1rem;
     font-size: .8rem;
 }
@@ -226,7 +274,7 @@
 .InitiateForm_box_form_input{
     border-top-right-radius: .2rem;
     border-bottom-right-radius: .2rem;
-    padding: .3rem;
+    padding: .6rem;
     width: 50%;
 }
 
@@ -237,7 +285,7 @@
 }
 
 .InitiateForm_box_form_duration input{
-    width: 2rem;
+    width: 2.5rem;
     height: 1.5rem;
     border-radius: .3rem;
     background: transparent;
@@ -245,7 +293,7 @@
     
 }
 .InitiateForm_box_form_start input{
-    width: 2rem;
+    width: 2.5rem;
     height: 1.5rem;
     background: transparent;
     border-radius: .3rem;
@@ -462,7 +510,7 @@
 .InitiateForm_box_form_label{
     border-top-left-radius: .3rem;
     border-bottom-left-radius: .3rem;
-    padding: .4rem;
+    padding: 1rem;
     margin-bottom: 1rem;
     font-size: .8rem;
 }
@@ -475,7 +523,7 @@
 .InitiateForm_box_form_input{
     border-top-right-radius: .2rem;
     border-bottom-right-radius: .2rem;
-    padding: .3rem;
+    padding: .8rem;
     width: 55%;
 }
 
@@ -486,16 +534,16 @@
 }
 
 .InitiateForm_box_form_duration input{
-    width: 2rem;
-    height: 1.5rem;
+    width: 70%;
+    height: 2rem;
     border-radius: .3rem;
     background: transparent;
     border: solid 2px rgb(144, 105, 222);
     
 }
 .InitiateForm_box_form_start input{
-    width: 2rem;
-    height: 1.5rem;
+    width: 70%;
+    height: 2.2rem;
     background: transparent;
     border-radius: .3rem;
     border: solid 2px rgb(144, 105, 222);

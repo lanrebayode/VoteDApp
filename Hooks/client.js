@@ -40,10 +40,6 @@ const networkUrl =
 
 let provider;
 
-//const signer = new ethers.Wallet(PRIVATEKEY, provider);
-//await window.ethereum.enable();
-
-//Using Context to make SC functions available to every part of the App
 export const VotingSystemContext = React.createContext();
 
 export const VotingSystemProvider = ({ children }) => {
@@ -52,6 +48,7 @@ export const VotingSystemProvider = ({ children }) => {
   const [candidatesLength, setCandidatesLength] = useState();
   const [newCampaignID, setNewCampaignId] = useState();
   const [contracto, setContracto] = useState();
+  const [approveTx, setApproveTx] = useState();
 
   const connectWallet = async () => {
     provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -101,6 +98,8 @@ export const VotingSystemProvider = ({ children }) => {
         campaignDuration,
         startTime
       );
+      const txResponse = await transaction.wait();
+      console.log(txResponse);
       // Got total campaignLength to calc the next ID
       const x = await contracto.totalCampaignID();
       const y = x.toNumber();
@@ -147,8 +146,18 @@ export const VotingSystemProvider = ({ children }) => {
           gasLimit,
         }
       );
-      alert(`Successfully Approved ${address} to vote`);
-      console.log(transaction);
+      const txResponse = await transaction.wait();
+      setApproveTx(txResponse);
+      if (txResponse) {
+        alert(`Successfully Approved ${address} to vote`);
+      } else {
+        alert(
+          `Unable to approve ${address} to vote, check if campaign is restricted`
+        );
+      }
+
+      console.log("Receipt:", txResponse);
+      return txResponse;
     } catch (error) {
       console.log(`Error while approving ${address}`, error);
     }
@@ -164,18 +173,17 @@ export const VotingSystemProvider = ({ children }) => {
   //UPLOADING TO IPFS
   const uploadToIPFS = async (file) => {
     try {
+      console.log("trying to uplad");
       const addFileToIPFS = await client.add({ content: file }); //will generate a unique hash to the file
+      console.log(addFileToIPFS.path);
       const url = `https://${subDomain}/ipfs/${addFileToIPFS.path}`; //turning generated hash into ipfs link
-      ipfsUrl = url;
-      setCandidateImageHash(url);
-      console.log(ipfsUrl);
-      //alert(`Image has been added to IPFS Server @ ${url}`);
       console.log(url);
       return url;
     } catch (error) {
       console.log("Unable to upload to IPFS Server");
     }
   };
+  //console.log(candidateImageHash);
 
   //CHECH CANDIDATE IN CAMPAIGN
   const checkCandidates = async (campaignID, candidateID) => {
@@ -196,13 +204,17 @@ export const VotingSystemProvider = ({ children }) => {
     imgHash,
     candidateID
   ) => {
+    const gasLimit = ethers.BigNumber.from(200000);
     try {
       const transaction = await contracto.addVoteOptions(
         campaignID,
         candidateName,
         imgHash,
-        candidateID
+        candidateID,
+        { gasLimit }
       );
+      const txResponse = await transaction.wait();
+      console.log(txResponse);
       alert(`Successfully added ${candidateName}`);
       console.log(transaction);
     } catch (error) {
@@ -249,9 +261,11 @@ export const VotingSystemProvider = ({ children }) => {
         checkCandidates,
         getTotalCandidates,
         vote,
+        connectWallet,
         loadCampaign,
         candidatesLength,
         newCampaignID,
+        approveTx,
       }}
     >
       {children}

@@ -67,7 +67,7 @@ const View = () => {
         <div className={Style2.Vote_box}>
           <div className={Style2.Vote_box_form}>
             <label>
-              Enter CampaignID:
+              CampaignID:
               <input
                 type="number"
                 onChange={(e) => setCampaignID(e.target.value)}
@@ -87,7 +87,6 @@ const View = () => {
         {loadCampaign ? (
           <div className={Style.View_box_campaignDetails}>
             <h3>{loadCampaign[1]}</h3>
-            <p>Campaign ID:{campaignID} </p>
             <p>
               Campaign Chairperson:<span>{loadCampaign[0]}</span>{" "}
             </p>

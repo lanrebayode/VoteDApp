@@ -72,7 +72,7 @@ const Vote = () => {
       <div className={Style.Vote_box}>
         <div className={Style.Vote_box_form}>
           <label>
-            Enter CampaignID:
+            CampaignID:
             <input
               type="number"
               onChange={(e) => setCampaignID(e.target.value)}

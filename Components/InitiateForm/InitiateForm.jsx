@@ -1,13 +1,16 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect, useRef } from "react";
 import Style from "./InitiateForm.module.css";
 import Image from "next/image";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import { BiCopy } from "react-icons/bi";
+import { CopyToClipboard } from "react-copy-to-clipboard";
 
 import { VotingSystemContext } from "@/Hooks/client";
 import loadingGif from "../../public/loadinggif.gif";
 
 const InitiateForm = () => {
-  const { initiate, approve, newCampaignID } = useContext(VotingSystemContext);
+  const { connectWallet, initiate, approve, approveTx, newCampaignID } =
+    useContext(VotingSystemContext);
 
   const [campaignName, setCampaignName] = useState("");
   const [isRestricted, setIsResrticted] = useState(false);
@@ -36,7 +39,7 @@ const InitiateForm = () => {
     Date.now() + startTime.hours * 3600 + startTime.mins * 60;
 
   //function will handle how details will be passed to the contract and initiate a campaign
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     setLoading(true);
     try {
       initiate(campaignName, isRestricted, durationInSec, startTimeInSec);
@@ -45,7 +48,7 @@ const InitiateForm = () => {
       console.log(durationInSec);
       console.log(startTimeInSec);
     } catch (error) {}
-
+    await initiate();
     setIdReady(true);
     setCampaignID(ID);
   };
@@ -53,8 +56,10 @@ const InitiateForm = () => {
   //function will approve address to vote in campaign
   const handleApprove = async (campaignID, address) => {
     setApproveLoading(true);
-    approve(campaignID, address);
-    setApproved(true);
+    await approve(campaignID, address);
+    if (approveTx) {
+      setApproved(true);
+    }
     setAddressCount(addressCount + 1);
 
     //TimeOut to make success message dissappear
@@ -172,6 +177,7 @@ const InitiateForm = () => {
 
         {/* APPROVE ADDRESS TO VOTE FOR RESRICTED CAMPAIGN */}
         <div className={Style.approve}>
+          <h5>Approve Voting Address for Restricted Campaigns</h5>
           <div className={Style.approveLabel}>
             <label>
               CampaignID:
@@ -184,9 +190,9 @@ const InitiateForm = () => {
             </label>
           </div>
           <br />
-          <label className={Style.InitiateForm_box_form_label}>Address</label>
+          <label className={Style.appoveLabel2}>Address</label>
           <input
-            className={Style.InitiateForm_box_form_input}
+            className={Style.approveInput}
             type="text"
             placeholder="Enter Address"
             onChange={(e) => setAddress(e.target.value)}
@@ -200,7 +206,7 @@ const InitiateForm = () => {
           {approveLoading ? (
             <Image src={loadingGif} alt="loading gif" width={20} height={20} />
           ) : (
-            "Start Campaign"
+            "Approve Voter"
           )}
         </button>
         {approved && (
