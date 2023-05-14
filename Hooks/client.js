@@ -87,9 +87,9 @@ export const VotingSystemProvider = ({ children }) => {
     campaignDuration,
     startTime
   ) => {
-    if (!campaignName || !campaignDuration || !startTime) {
-      alert("Incomplete inpute, please fill all required input.");
-    }
+    // if (!campaignName || !campaignDuration || !startTime) {
+    //   alert("Incomplete inpute, please fill all required input.");
+    // }
     try {
       const gasLimit = ethers.BigNumber.from(33000);
       const transaction = await contracto.startCampaign(
@@ -103,7 +103,7 @@ export const VotingSystemProvider = ({ children }) => {
       // Got total campaignLength to calc the next ID
       const x = await contracto.totalCampaignID();
       const y = x.toNumber();
-      setNewCampaignId(y + 1);
+      setNewCampaignId(y);
 
       contracto.on(
         "StartCampaign",
