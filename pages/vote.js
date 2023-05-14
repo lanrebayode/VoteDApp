@@ -1,3 +1,4 @@
+import Footer from "@/Components/Footer/Footer";
 import NavBar from "@/Components/NavBar/NavBar";
 import Vote from "@/Components/Vote/Vote";
 import React from "react";
@@ -7,6 +8,7 @@ const vote = () => {
     <div>
       <NavBar />
       <Vote />
+      <Footer />
     </div>
   );
 };
