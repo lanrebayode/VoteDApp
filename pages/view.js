@@ -9,7 +9,7 @@ const view = () => {
     <div>
       <NavBar />
       <View />
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };

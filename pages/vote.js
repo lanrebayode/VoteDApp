@@ -8,7 +8,7 @@ const vote = () => {
     <div>
       <NavBar />
       <Vote />
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };
