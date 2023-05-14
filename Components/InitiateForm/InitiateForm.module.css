@@ -222,6 +222,10 @@
     color: rgb(48, 120, 48);
     font-family: sans-serif;
 }
+.failureMessage{
+    color: rgb(240, 42, 7);
+    font-family: sans-serif;
+}
 
 .copy{
     display: flex;

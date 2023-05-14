@@ -1,0 +1,32 @@
+
+.Hero{
+    width: 100%;
+}
+
+.Hero_box{
+    width: 100%;
+    margin: auto;
+}
+
+.Hero_box_first{
+    background-color: blueviolet;
+    border-radius: 1rem;
+    padding: 2rem;
+    color: white;
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+}
+
+@media screen and (min-width: 320px) and (max-width: 449px) {
+    .Hero_box_first{
+        display: block;
+    }
+
+    .Hero_box_first_img{
+        width: 100%;
+        height: unset;
+    }
+    
+}

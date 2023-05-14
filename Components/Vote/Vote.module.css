@@ -105,6 +105,15 @@
     text-align: center;
 }
 
+.votesuccess{
+    color: green;
+    font-family: sans-serif;
+}
+.voteFail{
+    font-family: sans-serif;
+    color: rgb(224, 12, 12);
+}
+
 @media screen and (min-width: 320px) and (max-width: 450px) {
 
 
@@ -215,7 +224,6 @@
     color: white;
     text-align: left;
 }
-
 .Vote_box input{
     width: 8rem;
     height: 1rem;

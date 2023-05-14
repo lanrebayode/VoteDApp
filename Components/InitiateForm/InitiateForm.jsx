@@ -24,6 +24,7 @@ const InitiateForm = () => {
   const [loading, setLoading] = useState(false);
   const [approveLoading, setApproveLoading] = useState(false);
   const [addressCount, setAddressCount] = useState(0);
+  const [approveFail, setApproveFail] = useState(false);
 
   const handleDurationChange = (e) => {
     setDuration({ ...duration, [e.target.name]: e.target.value });
@@ -56,10 +57,14 @@ const InitiateForm = () => {
   //function will approve address to vote in campaign
   const handleApprove = async (campaignID, address) => {
     setApproveLoading(true);
-    await approve(campaignID, address);
-    if (approveTx) {
-      setApproved(true);
-    }
+    await approve(campaignID, address).then((approveTx) => {
+      if (approveTx) {
+        setApproved(true);
+      } else {
+        setApproveFail(true);
+      }
+    });
+
     setAddressCount(addressCount + 1);
 
     //TimeOut to make success message dissappear
@@ -213,6 +218,9 @@ const InitiateForm = () => {
           <p className={Style.appovalMessage}>
             {address} has been approved to vote.
           </p>
+        )}
+        {approveFail && (
+          <p className={Style.failureMessage}>Error approving {address}. </p>
         )}
       </div>
     </div>

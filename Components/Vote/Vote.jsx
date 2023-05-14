@@ -12,6 +12,8 @@ const Vote = () => {
   const [campaignID, setCampaignID] = useState(0);
   const [candidatesArray, setCandidatesArray] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [voteSuccess, setVoteSuccess] = useState(false);
+  const [voteFail, setVoteFail] = useState(false);
 
   let totalCandidates;
   let eachCandidates;
@@ -55,7 +57,13 @@ const Vote = () => {
 
   const handleVote = async (campaignID, candidateId) => {
     console.log(candidateId);
-    vote(campaignID, candidateId);
+    vote(campaignID, candidateId).then((txResponse) => {
+      if (txResponse) {
+        setVoteSuccess(true);
+      } else {
+        setVoteFail(true);
+      }
+    });
   };
 
   console.log("candidatesArray", candidatesArray);
@@ -116,6 +124,18 @@ const Vote = () => {
               </div>
             ))}
           </div>
+          {voteSuccess && (
+            <p className={Style.votesuccess}>
+              {" "}
+              Congratulations, you have voted the candidate of your choice
+            </p>
+          )}
+          {voteFail && (
+            <p className={Style.voteFail}>
+              {" "}
+              Sorry, someething went wron with the transaction.
+            </p>
+          )}
         </div>
       ) : (
         ""

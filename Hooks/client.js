@@ -118,7 +118,7 @@ export const VotingSystemProvider = ({ children }) => {
         ) => {
           const campaignId = totalCampaignID.toNumber();
           console.log("NEWID:", campaignId);
-          return campaignId;
+          return campaignId, txResponse;
         }
       );
       console.log(transaction);
@@ -242,8 +242,10 @@ export const VotingSystemProvider = ({ children }) => {
       const transaction = await contracto.vote(campaignID, candidateID, {
         gasLimit,
       });
+      const txResponse = await transaction.wait();
       console.log("voting successful", transaction);
-      alert("Congratulations, you have voted the candidate of your choice");
+      //alert("Congratulations, you have voted the candidate of your choice");
+      return txResponse;
     } catch (error) {
       console.log("Unable to perform voting operation", error);
     }
